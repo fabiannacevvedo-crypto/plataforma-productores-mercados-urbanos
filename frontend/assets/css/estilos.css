@@ -1,0 +1,200 @@
+:root {
+  --verde: #15803d;
+  --verde-oscuro: #166534;
+  --verde-claro: #dcfce7;
+  --naranja: #f97316;
+  --naranja-oscuro: #ea580c;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.bg-verde {
+  background-color: var(--verde) !important;
+}
+
+.bg-verde-oscuro {
+  background-color: var(--verde-oscuro) !important;
+}
+
+.text-verde {
+  color: var(--verde) !important;
+}
+
+.text-naranja {
+  color: var(--naranja) !important;
+}
+
+.btn-naranja {
+  background-color: var(--naranja);
+  border-color: var(--naranja);
+  color: #fff;
+}
+
+.btn-naranja:hover,
+.btn-naranja:focus {
+  background-color: var(--naranja-oscuro);
+  border-color: var(--naranja-oscuro);
+  color: #fff;
+}
+
+.hero {
+  background: linear-gradient(135deg, var(--verde) 0%, var(--verde-oscuro) 100%);
+}
+
+.card-producto,
+.card-entidad {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card-producto:hover,
+.card-entidad:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+}
+
+.precio-badge {
+  background-color: var(--verde);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
+.etiqueta-estado {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+}
+
+.etiqueta-pendiente {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.etiqueta-confirmado {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.etiqueta-entregado {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.etiqueta-premium {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.etiqueta-estandar {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.panel-chat {
+  height: 420px;
+  overflow-y: auto;
+  background-color: #f8fafc;
+}
+
+.burbuja {
+  max-width: 70%;
+  padding: 0.6rem 1rem;
+  border-radius: 1rem;
+}
+
+.burbuja-propia {
+  background-color: var(--verde);
+  color: #fff;
+  margin-left: auto;
+}
+
+.burbuja-ajena {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  color: #1f2937;
+}
+
+.burbuja-oferta {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #fef3c7;
+  color: #92400e;
+  border-radius: 0.5rem;
+  padding: 0.15rem 0.6rem;
+  margin-top: 0.35rem;
+}
+
+.burbuja-propia .burbuja-oferta {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.lista-contactos {
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.lista-contactos .contacto {
+  cursor: pointer;
+}
+
+.lista-contactos .contacto:hover,
+.lista-contactos .contacto.activo {
+  background-color: var(--verde-claro);
+}
+
+.login-card {
+  max-width: 420px;
+  width: 100%;
+}
+
+.loading-overlay {
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mini-estadistica {
+  background-color: #f0fdf4;
+  border-radius: 0.75rem;
+  padding: 0.6rem 0;
+}
+
+.link-nav {
+  color: #d1fae5;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.link-nav:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.link-nav.activo {
+  color: #fff;
+  font-weight: 700;
+  border-bottom: 2px solid var(--naranja);
+  border-radius: 0;
+}
