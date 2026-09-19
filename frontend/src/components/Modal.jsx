@@ -1,0 +1,17 @@
+export default function Modal({ abierto, titulo, onCerrar, children }) {
+  if (!abierto) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+      <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between border-b px-5 py-4">
+          <h2 className="text-lg font-semibold text-verde-800">{titulo}</h2>
+          <button onClick={onCerrar} className="text-gray-400 hover:text-gray-700 text-2xl leading-none">
+            ×
+          </button>
+        </div>
+        <div className="p-5">{children}</div>
+      </div>
+    </div>
+  );
+}
