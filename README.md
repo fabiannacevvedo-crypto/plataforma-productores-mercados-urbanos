@@ -2,7 +2,7 @@
 
 Sistema web que permite a productores rurales de **Formosa y el NEA** publicar sus productos, negociar precios en tiempo real mediante un chat y conectar directamente con compradores urbanos (comercios, restaurantes y mayoristas), eliminando intermediarios.
 
-**Stack completo:** Node.js + Express + Sequelize (MySQL) en el backend · React + Tailwind en el frontend · Git Flow para el control de versiones.
+**Stack completo:** Node.js + Express + Sequelize (MySQL) en el backend · HTML/CSS/JS (vanilla) + Bootstrap 5 en el frontend · Git Flow para el control de versiones.
 
 ---
 
@@ -78,6 +78,7 @@ main
  └── develop
       ├── feature/backend-api
       ├── feature/frontend-react
+      ├── feature/frontend-vanilla
       └── feature/docker-docs
 ```
 
@@ -139,38 +140,44 @@ npm test                  # suite E2E (20 pruebas)
 
 ---
 
-## 🎨 FASE 3 · Frontend (React + Tailwind)
+## 🎨 FASE 3 · Frontend (HTML/CSS/JS vanilla + Bootstrap)
 
 ### Estructura
 
 ```
 frontend/
- ├── src/
- │   ├── services/        # api.js (axios) + servicios por dominio
- │   ├── context/         # AuthContext (sesión con JWT)
- │   ├── components/      # Navbar, Modal, Spinner, Alerta, ProtectedRoute
- │   └── pages/           # Login, Registro, Inicio, Productos, Productores, Compradores, Transacciones, Chats
- ├── index.html
- ├── vite.config.js       # proxy /api → localhost:4000
- ├── tailwind.config.js
+ ├── assets/
+ │   ├── css/estilos.css   # estilos complementarios sobre Bootstrap
+ │   └── js/               # app.js (sesión + API) y un módulo por página
+ ├── index.html            # login
+ ├── registro.html
+ ├── inicio.html
+ ├── productos.html
+ ├── productores.html
+ ├── compradores.html
+ ├── transacciones.html
+ ├── chats.html
+ ├── 404.html
+ ├── servidor.js           # servidor estático sin dependencias + proxy /api
  └── package.json
 ```
 
-### Instalación y puesta en marcha
+### Puesta en marcha
+
+Sin dependencias externas: el frontend usa Bootstrap 5 y Bootstrap Icons desde CDN, y un pequeño servidor Node estático (`servidor.js`) que además proxeé `/api` hacia el backend.
 
 ```bash
 cd frontend
-npm install
-npm run dev               # app en http://localhost:5173 (proxy hacia el backend)
+npm start                 # app en http://localhost:5175 (proxy hacia el backend :4000)
 ```
 
 ### Funcionalidades de UX
 
-- Formularios con validación y feedback claro (errores por campo + alertas).
-- Listados dinámicos, estados de carga (`Spinner`) y empty states.
-- Modales de creación/edición y confirmación de eliminación.
+- Formularios con validación y feedback claro (errores por campo + alertas Bootstrap).
+- Listados dinámicos, estados de carga y empty states.
+- Modales de creación/edición y confirmación de eliminación (Bootstrap 5).
 - Flujo completo de negociación: el comprador oferta un precio en el chat y crea el pedido; el productor lo confirma solo si el precio coincide con la oferta.
-- Protección de rutas y redirección automática a `/login` ante token expirado (interceptor axios).
+- Protección de acceso: redirección automática a `/index.html` ante sesión expirada (token JWT en `localStorage`).
 
 ---
 
@@ -180,14 +187,14 @@ npm run dev               # app en http://localhost:5173 (proxy hacia el backend
 
 1. MySQL activo (el proyecto fue probado con MySQL 8.4 en WAMP, puerto 3306).
 2. `backend/.env` con credenciales correctas.
-3. Backend en `:4000` y Frontend en `:5173`.
+3. Backend en `:4000` y Frontend en `:5175` (`cd frontend && npm start`).
 
 ### Checklist funcional
 
 | # | Criterio | Cómo comprobarlo |
 |---|---|---|
 | 1 | Registro de productor y comprador | Crear cuenta en `/registro`, elegir rol |
-| 2 | Login por rol | `/login` con `juan@productor.com` (productor) o `comprar@restaurante.com` (comprador), password `123456` |
+| 2 | Login por rol | `/index.html` con `juan@productor.com` (productor) o `comprar@restaurante.com` (comprador), password `123456` |
 | 3 | Email único | Registrar un comprador con el email del productor → error 409 |
 | 4 | Publicar producto logueado como productor | Sección Productos → "+ Publicar producto" |
 | 5 | No publicar sin productor | `POST /productos` sin token → 401; sin rol productor → 403 |
